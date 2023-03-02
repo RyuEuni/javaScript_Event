@@ -7,6 +7,74 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div id="root">
+    <ul id="menu">
+      <li>items-1</li>
+      <li>items-2</li>
+      <li>items-3</li>
+      <li>items-4</li>
+      <li>items-5</li>
+    </ul>
+  </div>
+
+  <script>
+    const menu = document.getElementById('menu');
+    const firstLi = document.querySelector('#menu > li:nth-child(1)');
+    console.log(firstLi);
+    console.dir(menu.children);
+
+    // menu.children[0].style.color = "pink";
+    // menu.children[1].style.color = "pink";
+    // menu.children[2].style.color = "pink";
+    // menu.children[3].style.color = "pink";
+    // menu.children[4].style.color = "pink";
+
+    for(let i = 0; i < menu.children.length; i++){
+      menu.children[i].style.color = "pink";
+
+      //동적으로 이벤트 만들기
+      // menu.children[i].addEventListener('click', function(){
+      //   if(i === 2){
+      //   menu.children[i].style.color = "violet";
+      //   }
+      //   else{
+      //     menu.children[i].style.color = "green";
+      //   }
+      // });
+    }
+
+    //정적으로 이벤트 만들기
+    // menu.children[1].addEventListener('click', function(){
+    //   menu.children[1].style.color = "blue";
+    // });
+    // menu.children[2].addEventListener('click', function(){
+    //   menu.children[2].style.color = "blue";
+    // });
+    // menu.children[3].addEventListener('click', function(){
+    //   menu.children[3].style.color = "blue";
+    // });
+    // menu.children[4].addEventListener('click', function(){
+    //   menu.children[4].style.color = "blue";
+    // });
+
+    //토글 형태로 클릭할 때 마다 색상 변경
+    let toktak = true;
+    menu.addEventListener('click', function(){
+      if(toktak === true){
+        for(let i = 0; i < menu.children.length; i++){
+          menu.children[i].style.color = "violet";
+          menu.style.backgroundColor = "darkGray";
+        }
+        toktak = false;
+      }
+      else{
+        for(let i = 0; i < menu.children.length; i++){
+          menu.children[i].style.color = "green";
+          menu.style.backgroundColor = "white";
+        }
+        toktak = true;
+      }
+    });
+  </script>
 </body>
 </html>
