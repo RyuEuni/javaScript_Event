@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #pop-up {
+      width: 300px;
+      height: 300px;
+      background-color: goldenrod;
+      position: fixed;
+      top : 100px; 
+      left: 100px;
+    }
+    #pop-up > button{
+      width: 100px;
+      height: 100px;
+    }
+
+    #root{
+      width: 100vw;
+      height: 300vh;
+      background-color: rgb(170, 170, 170);
+    }
+
+    #root > section{
+      width: 100%;
+      height: 100vh;
+      border: 1px solid black;
+    }
+    #root > section:nth-child(1){background-color: rgb(138, 71, 123) ;}
+    #root > section:nth-child(2){background-color: cornflowerblue;}
+    #root > section:nth-child(3){background-color: cadetblue;}
+  </style>
+</head>
+<body>
+
+  <aside id="pop-up">
+    <button>close!</button>
+    <p>공욱재는 미남이다.</p>
+  </aside>
+  <div id="root">
+    <section></section>
+    <section></section>
+    <section></section>
+  </div>
+
+  <script>
+    // close라는 버튼을 클릭하면 없어지도록 해보기
+    const popUp = document.getElementById('pop-up');
+    const root = document.getElementById('root');
+    const closeButton = popUp.children[0]; //querySelector나 getElement와 동일
+    const sec3 = document.querySelector('#root > section:nth-child(3)');
+    console.dir(popUp);
+    console.dir(closeButton);
+
+
+    closeButton.addEventListener('click', function(){
+      //closeButton.style.display = 'none'; //none을 이용해 버튼이 안보이는 것 같이 동작
+      //closeButton.parentElement.style.display = 'none';
+      popUp.children[1].style.display = "none";
+
+      //첫번째 section에 p태그를 추가해 버튼 클릭 시 문자 추가
+      const P = document.createElement('p');
+      P.textContent = "공욱재는 추남이다";
+      root.children[0].appendChild(P);
+    });
+
+    sec3.addEventListener('click', function(){
+      // 세번째 section을 클릭하면 미남 글씨를 보이게하고 추남글씨는 없애기
+      popUp.children[1].style.display = "";
+      root.children[0].children[0].style.display = "none";
+    });
+  </script>
+</body>
+</html>
